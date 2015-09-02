@@ -6,8 +6,8 @@
  * Time: 10:33 AM
  */
 
-print_r($_POST);
-
-require_once "FormService.php";
+require_once "formService.php";
 $formService = new FormService();
-$formId = $_POST['formID'];
+$formService->saveFormValue($_POST);
+header("Location: index.php");
+

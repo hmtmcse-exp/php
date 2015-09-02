@@ -30,10 +30,17 @@ class DatabaseHandler{
 
     public function executeSQL($sql){
         $this->openConnection();
-        echo $sql;
         $queryResult =  mysql_query($sql,$this->mysqlConnection);
         $this->closeConnection();
         return $queryResult;
+    }
+
+    public function executeInsert($sql){
+        $this->openConnection();
+        mysql_query($sql,$this->mysqlConnection);
+        $id = mysql_insert_id();
+        $this->closeConnection();
+        return $id;
     }
 
     public function executeSQLObject($sql){
@@ -74,6 +81,20 @@ class DatabaseHandler{
 
     public function delete($table,$afterWhere){
 
+    }
+
+
+    public function getList($sql){
+        $this->openConnection();
+        $queryResult =  mysql_query($sql,$this->mysqlConnection);
+        $result = array();
+        while($row = mysql_fetch_object($queryResult)){
+            $result[$row->form_row_id][$row->key] = $row->value;
+            $result[$row->form_row_id]['form_row_id'] = $row->form_row_id;
+            $result[$row->form_row_id]['form_id'] = $row->form_id;
+        }
+        $this->closeConnection();
+        return $result;
     }
 
 
