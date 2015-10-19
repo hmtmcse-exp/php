@@ -12,6 +12,10 @@
 
 require_once "formService.php";
 $formService = new FormService();
+
+echo "<pre>";
+print_r($formService->getList());
+
 echo "<table border='1'>";
 echo $formService->tableGenerator($formService->getCreateFormByID(1),$formService->getList());
 echo "</table>";
