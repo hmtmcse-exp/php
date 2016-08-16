@@ -1,0 +1,1 @@
+{{MISD::dynamicArtical()}}
