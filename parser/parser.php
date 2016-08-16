@@ -21,10 +21,11 @@ $userinfo = '{{ MISMaster::dynamicArticle($data="",$uuid="",$name="",$options = 
 {{ MISMaster::dynamicGallery($data="",$uuid="",$name="",$options = array()) }}
 
 ';
-preg_match_all ("/{{\s*(MISMaster::dynamic\w+\(.*\)\s+)}}/U", $userinfo, $pat_array);
+//preg_match_all ("/{{\s*(MISMaster::dynamic\w+\(.*\)\s*)}}/U", $homepage, $pat_array);
+preg_match_all ("/{{\s*(MISMaster::dynamic(\w+)\((.*\))\s*)}}/U", $homepage, $pat_array);
 
 
-preg_match_all ("/(MISMaster::dynamic\w+\(.*\)\s+)/U", 'MISMaster::dynamicArticle(   $data="",$uuid="",$name="",$options = array()) ', $array);
+//preg_match_all ("/(.*,)/U", '($data="",$uuid="",$name="",$options = array())', $array);
 
 echo "<pre>";
 print_r($array);
