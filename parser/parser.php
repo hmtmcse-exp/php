@@ -9,3 +9,26 @@
 $homepage = file_get_contents('template.blade.php');
 echo $homepage;
 
+$userinfo = '{{ MISMaster::dynamicArticle($data="",$uuid="",$name="",$options = array()) }}
+
+{{ MISMaster::dynamicArticle($data="",$uuid="",$name="",$options = array()) }}
+
+{{ MISMaster::staticArticle($data="",$uuid="",$name="",$options = array()) }}
+
+{{ MISMaster::staticProduct($data="",$uuid="",$name="",$options = array()) }}
+{{ MISMaster::dynamicArticle($data="",$uuid="",$name="",$options = array()) }}
+{{ MISMaster::dynamicPCategory($data="",$uuid="",$name="",$options = array()) }}
+{{ MISMaster::dynamicGallery($data="",$uuid="",$name="",$options = array()) }}
+
+';
+preg_match_all ("/{{\s*(MISMaster::dynamic\w+\(.*\)\s+)}}/U", $userinfo, $pat_array);
+
+
+preg_match_all ("/(MISMaster::dynamic\w+\(.*\)\s+)/U", 'MISMaster::dynamicArticle(   $data="",$uuid="",$name="",$options = array()) ', $array);
+
+echo "<pre>";
+print_r($array);
+echo "<br>";
+print_r($pat_array);
+
+
