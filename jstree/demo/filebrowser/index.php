@@ -327,6 +327,8 @@ if(isset($_GET['operation'])) {
 									"action"			: function (data) {
 										var inst = $.jstree.reference(data.reference),
 											obj = inst.get_node(data.reference);
+										console.log(obj);
+
 										inst.create_node(obj, { type : "default" }, "last", function (new_node) {
 											setTimeout(function () { inst.edit(new_node); },0);
 										});
@@ -367,6 +369,7 @@ if(isset($_GET['operation'])) {
 						});
 				})
 				.on('create_node.jstree', function (e, data) {
+					console.log(data);
 					$.get('?operation=create_node', { 'type' : data.node.type, 'id' : data.node.parent, 'text' : data.node.text })
 						.done(function (d) {
 							data.instance.set_id(data.node, d.id);
@@ -404,7 +407,13 @@ if(isset($_GET['operation'])) {
 							data.instance.refresh();
 						});
 				})
+				.on("dblclick.jstree", function (e, data) {
+					console.log("dblclick.jstree");
+					console.log(data);
+				})
 				.on('changed.jstree', function (e, data) {
+					console.log(data);
+
 					if(data && data.selected && data.selected.length) {
 						$.get('?operation=get_content&id=' + data.selected.join(':'), function (d) {
 							if(d && typeof d.type !== 'undefined') {
