@@ -7,12 +7,19 @@
  * Time: 06:38 PM
  */
 
-print_r(FileOperation::delete("C:\\Users\\Touhid Mia\\Desktop\\copy\\to--"));
+echo "<pre>";
+print_r(FileOperation::getDirList("/var/www/html/php/"));
 
 
 
 class FileOperation {
 
+    public static function getDirList($location){
+        if (self::isFileExist($location) && self::isItDirectory($location)){
+            return array_diff(scandir($location), array('..', '.'));
+        }
+       return array();
+    }
 
     public static function textToString($location){
         if(self::isFileExist($location)){
