@@ -17,9 +17,18 @@
 <div class="dropzone"></div>
 
 
-<!--<div class="image_upload_div">-->
-    <!--<form action="upload.php" class="dropzone">-->
-    <!--</form>-->
-<!--</div>-->
+<div class="image_upload_div">
+    <form action="upload.php" class="dropzone" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit">
+    </form>
+
+    <form action="/file-upload" class="dropzone">
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+        </div>
+    </form>
+
+</div>
 </body>
 </html>
