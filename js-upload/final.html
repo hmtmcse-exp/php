@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bismillah Bootstrap</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+
+    <style>
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+        .image{
+            width: 100px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <script>
+
+        jQuery(document).ready(function () {
+            function tableRow(file) {
+                var row = "<tr class='middle-align'>";
+                row += '<td class="image"></td>';
+                row += "<td>" + file.name + "</td>";
+                row += "<td>" + file.type + "</td>";
+                row += "<td>" + file.size + " bytes" + "</td>";
+                row += "</tr>";
+                var jRaw = jQuery(row);
+
+                var reader = new FileReader();
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        var image = jQuery('<img/>').addClass('thumb');
+                        image.attr('src', e.target.result);
+                        image.attr('title', theFile.name);
+                        image.attr('width', 100);
+                        image.attr('height', 100);
+                        jRaw.find(".image").append(image);
+                    };
+                })(file);
+                reader.readAsDataURL(file);
+                jQuery("#new-raw").append(jRaw);
+            }
+
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                jQuery('#files').on('change', function(event){
+                    var files = event.target.files;
+                    for (var i = 0, file; file = files[i]; i++) {
+                        tableRow(file);
+                    }
+
+                });
+
+            } else {
+                alert('The File APIs are not fully supported in this browser.');
+            }
+
+        });
+        </script>
+
+
+    <form role="form">
+        <div class="form-group">
+            <label >Upload</label>
+            <input type="file" id="files" name="file" multiple/>
+        </div>
+    </form>
+
+
+
+    <div class="row margin-top-100">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Size</th>
+            </tr>
+            </thead>
+            <tbody id="new-raw">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
