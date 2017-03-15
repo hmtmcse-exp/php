@@ -27,12 +27,20 @@
     <script>
 
         jQuery(document).ready(function () {
+
+            jQuery("#image-preview").on('click', '#delete-image', function() {
+                var _this = jQuery(this);
+                _this.closest("tr").remove();
+            });
+
+
             function tableRow(file) {
                 var row = "<tr class='middle-align'>";
                 row += '<td class="image"></td>';
                 row += "<td>" + file.name + "</td>";
                 row += "<td>" + file.type + "</td>";
                 row += "<td>" + file.size + " bytes" + "</td>";
+                row += "<td><button class='btn btn-danger' id='delete-image'>Delete</button></td>";
                 row += "</tr>";
                 var jRaw = jQuery(row);
 
@@ -78,13 +86,14 @@
 
 
     <div class="row margin-top-100">
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="image-preview">
             <thead>
             <tr>
                 <th>Image</th>
                 <th>Name</th>
                 <th>Type</th>
                 <th>Size</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody id="new-raw">
