@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+
+
+</head>
+<body>
+
+<h1>My Parent Window</h1>
+
+<button id="parent">Parent Button</button>
+<br>
+<br>
+
+<script type="application/javascript">
+
+
+
+    window.addEventListener('message', function() {
+        console.log("Touhid called to parent message")
+    }, false)
+
+
+    document.getElementById('parent').addEventListener('click', parentClick, false);
+    function parentClick(e) {;
+
+        var iframe = document.getElementById('iframe');
+        iframe.contentWindow.postMessage('message', "http://localhost")
+        console.log(iframe.contentWindow);
+    }
+</script>
+
+<iframe id="iframe" src="child.html">
+    <button id="my-btn">Start</button>
+</iframe>
+
+</body>
+</html>

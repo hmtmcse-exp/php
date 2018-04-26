@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popup</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    window.opener.postMessage({token: 'aaa', secret: 'bbb'}, 'http://localhost');
+</script>
+
+
+<button id="demo">Child Button</button>
+
+<h1>My Child Window</h1>
+
+<script type="application/javascript">
+    document.getElementById('demo').addEventListener('click', handleButtonClick, false);
+    function handleButtonClick(e) {
+        console.log("Clicked");
+        window.opener.postMessage({token: 'abul adfasf', secret: 'adfasdfasdfasf'}, 'http://localhost');
+    }
+</script>
+
+</body>
+</html>

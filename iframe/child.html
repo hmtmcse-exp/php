@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+
+
+
+</head>
+<body>
+
+<button id="demo">Child Button</button>
+
+<h1>My Child Window</h1>
+
+<script type="application/javascript">
+    document.getElementById('demo').addEventListener('click', handleButtonClick, false);
+    function handleButtonClick(e) {;
+        window.parent.postMessage('message', "http://localhost")
+    }
+
+    window.addEventListener('message', function() {
+        console.log("Touhid called to child")
+    }, false)
+</script>
+
+</body>
+</html>
