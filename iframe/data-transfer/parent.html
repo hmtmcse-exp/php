@@ -22,13 +22,19 @@
 
     window.addEventListener('message', function() {
         console.log("Touhid called to parent message")
-    }, false)
+    }, false);
 
 
     document.getElementById('parent').addEventListener('click', parentClick, false);
     function parentClick(e) {
         var iframe = document.getElementById('iframe');
-        iframe.contentWindow.postMessage('message', "http://localhost")
+
+        var notificationType = {
+          type: "message",
+          messageObj: {name:"Abul", age: -1}
+        };
+
+        iframe.contentWindow.postMessage(notificationType, "http://localhost")
         console.log(iframe.contentWindow);
     }
 </script>

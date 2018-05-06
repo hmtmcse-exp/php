@@ -21,8 +21,15 @@
         window.parent.postMessage('message', "http://localhost")
     }
 
-    window.addEventListener('message', function() {
-        console.log("Touhid called to child")
+    window.addEventListener('message', function(e) {
+
+        var notificationType = e.data;
+        if (notificationType && notificationType.type === "message"){
+            console.log(notificationType.messageObj);
+        }else if (notificationType && notificationType.type === "fire"){
+            console.log(notificationType.messageObj);
+        }
+        console.log("Touhid called to child " + e.data.message);
     }, false)
 </script>
 
